@@ -8,13 +8,10 @@ const mongoose = require('mongoose');
 // npm i mongoose colors
 
 const colors = require('colors');
-const mongoose = require('mongoose')
 mongoose.connect("mongodb://localhost:27017", () => {
     title: { type: string, require = true };
     des: { type: string, require = true };
     date: { type: date };
-
-
 });
 
 
