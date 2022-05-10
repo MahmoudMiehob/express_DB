@@ -1,20 +1,28 @@
-const express = require('express');
+const express = require("express");
+const cors = require('cors')
 const app = express();
-const PORT = 3000;
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 
-// required libs : mongoose | colors
-// run the following command
-// npm i mongoose colors
+const PORT = 5000;
+require("dotenv/config");
 
-const colors = require('colors');
-mongoose.connect("mongodb://localhost:27017", () => {
-    title: { type: string, require = true };
-    des: { type: string, require = true };
-    date: { type: date };
+// IMPORT ROUTES
+const userRoute = require("./Routes/user");
+// MIDDLEWARE
+app.use(cors())
+app.use(bodyParser.json());
+app.use("/user", userRoute);
+// ROUTES
+app.get("/", (req, res) => {
+    res.send("app.js file !!!");
 });
 
-
+// CONNECT TO DB
+mongoose.connect(process.env.DB_CONNECTION, () => {
+    console.log("connected to DB");
+});
+// LISTEN TO PORT 3000
 app.listen(PORT, () => {
-    console.log('run');
-})
+    console.log(`server run on http://localhost:${PORT}`);
+});
