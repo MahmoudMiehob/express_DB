@@ -15,4 +15,14 @@ console.log(req.body);
 });
 
 
+router.get("/:userid", (req, res) => {
+    User.findById(req.params.userid)
+        .then((data) => res.json(data))
+        .catch((error) => {
+            res.send(error);
+        });
+});
+
+
+
 module.exports = router;
