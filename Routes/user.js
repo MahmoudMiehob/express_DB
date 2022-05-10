@@ -30,6 +30,13 @@ router.delete("/:userid", (req, res) => {
         .catch((error) => res.send(error));
 });
 
+router.patch("/:userid", (req, res) => {
+    User.updateOne({ _id: req.params.userid }, { firstname: req.body.firstname, lastname: req.body.lastname })
+        .then((data) => res.json(data))
+        .catch((error) => res.send(error));
+});
+
+
 
 
 module.exports = router;
